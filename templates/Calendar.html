@@ -1,20 +1,7 @@
-<!-- Extending the project layout, as this file will do minor customizations -->
-{% extends "layouts/project.html" %}
+{% extends "layouts/base.html" %}
+{% set project = "Calendar" %}
 
-<!-- Setting up variables to customize "project" details to be specific to hawkers -->
-{% set project = "hawkers" %}
-{% set overview = "https://hawkers.nighthawkcodingsociety.com/aboutus" %}
-
-{% set repo = "https://github.com/Unlqsting/AP-Comp-fastpages" %}
-{% set authors = "https://unlqsting.github.io/AP-Comp-fastpages/about/" %}
-
----
-layout: default
-permalink: /calendar/
-title: Calendar
-search_exclude: true
----
-
+{% block body %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -251,25 +238,12 @@ document.querySelector(".next").addEventListener("click", () => {
   renderCalendar();
 });
 
+//  document.querySelector(".days").addEventListener("Click", () => {
+ //   window.location.href = "http://www.w3schools.com";
+  //});
+
 renderCalendar();
 </script>
 </body>
 </html>
-
-<!-- Setting up a block replacement to customize background to BIRDS -->
-{% block background %}
-    <script src="{{ url_for('static', filename='js/three.r119.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/vanta.net.min.js') }}"></script>
-    <script>
-        VANTA.NET({
-            el: "body",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.00,
-            scaleMobile: 1.00
-        })
-    </script>
 {% endblock %}

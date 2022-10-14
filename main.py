@@ -21,6 +21,10 @@ def index():
 def stub():
     return render_template("stub.html")
 
+@app.route('/Calendar/')  # connects /stub/ URL to stub() function
+def Calendar():
+    return render_template("Calendar.html")
+
 # this runs the application on the development server
 if __name__ == "__main__":
     app.run(debug=True)
