@@ -35,8 +35,6 @@
                 <div>Sat</div>
             </div>
             <div class="days">
-                
-                
 
             </div>
         </div>
@@ -60,7 +58,7 @@ html {
     background-color: #12121f;
     color: #eee;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
 }
 
@@ -224,8 +222,13 @@ const months = [
 
   for (let j = 1; j <= nextDays; j++) {
     days += `<div class="next-date">${j}</div>`;
-    monthDays.innerHTML = days;
-  }
+    monthDays.innerHTML = days;                              
+  
+  
+  
+  
+  
+   }
 };
 
 document.querySelector(".prev").addEventListener("click", () => {
@@ -238,9 +241,14 @@ document.querySelector(".next").addEventListener("click", () => {
   renderCalendar();
 });
 
-//  document.querySelector(".days").addEventListener("Click", () => {
- //   window.location.href = "http://www.w3schools.com";
-  //});
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
 
 renderCalendar();
 </script>
