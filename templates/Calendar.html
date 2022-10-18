@@ -34,9 +34,9 @@
                 <div>Fri</div>
                 <div>Sat</div>
             </div>
-            <div class="days">
-
-            </div>
+              <div onclick class="days">
+    
+              </div>
         </div>
     </div>
 
@@ -143,6 +143,8 @@ html {
     cursor: pointer;
 }
 
+
+
 .prev-date,
 .next-date {
 opacity: 0.5;
@@ -155,6 +157,10 @@ opacity: 0.5;
 </style>
     
 <script>
+
+let clicked = null;
+let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
+
 const date = new Date();
 
 const renderCalendar = () => {
@@ -216,7 +222,8 @@ const months = [
     ) {
       days += `<div class="today">${i}</div>`;
     } else {
-      days += `<div>${i}</div>`;
+      days += `<div class="day">${i}</div>`;
+      document.getElementsByClassName("day"),addEventListener("click", () => console.log('click'));
     }
   }
 
@@ -241,14 +248,8 @@ document.querySelector(".next").addEventListener("click", () => {
   renderCalendar();
 });
 
-function myFunction() {
-  var x = document.getElementById("myDIV");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
+
+
 
 renderCalendar();
 </script>
