@@ -40,6 +40,27 @@
         </div>
     </div>
 
+    <div id="newEventPopup">
+      <h2>New Event</h2>
+
+      <input id="eventTitleInput" placeholder="Event Title" />
+
+      <button id="saveButton">Save</button>
+      <button id="cancelButton">Cancel</button>
+    </div>
+
+    <div id="deleteEventPopup">
+      <h2>Event</h2>
+
+      <p id="eventText"></p>
+
+      <button id="deleteButton">Delete</button>
+      <button id="closeButton">Close</button>
+    </div>
+
+    <div id="PopupBackDrop"></div>
+  </body>
+
 <style>
 * {
     margin: 0;
@@ -154,9 +175,92 @@ opacity: 0.5;
     background-color: #167e56;
 }
 
+.event {
+  font-size: 10px;
+  padding: 3px;
+  background-color: #58bae4;
+  color: rgb(51, 49, 49);
+  border-radius: 5px;
+  max-height: 55px;
+  overflow: hidden;
+}
+.padding {
+  cursor: default !important;
+  background-color: #FFFCFF !important;
+  box-shadow: none !important;
+}
+#newEventPopup, #deleteEventPopup {
+  display: none;
+  z-index: 20;
+  padding: 25px;
+  background-color: #167b7e;
+  box-shadow: 0px 0px 3px black;
+  border-radius: 5px;
+  width: 350px;
+  top: 100px;
+  left: calc(50% - 175px);
+  position: absolute;
+  font-family: sans-serif;
+}
+#eventTitleInput {
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 25px;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  box-shadow: 0px 0px 5px gray;
+}
+#eventTitleInput.error {
+  border: 2px solid red;
+}
+#cancelButton, #deleteButton {
+  background-color: #d36c6c;
+  width: 100%;
+}
+#saveButton, #closeButton {
+  background-color: #92a1d1;
+  width: 100%;
+}
+#eventText {
+  font-size: 14px;
+}
+#PopupBackDrop {
+  display: none;
+  top: 0px;
+  left: 0px;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: rgba(0,0,0,0.8);
+}
+
 </style>
     
 <script>
+
+//popup
+const newEventPopup = document.getElementById('newEventPopup');
+const deleteEventPopup = document.getElementById('deleteEventPopup');
+const backDrop = document.getElementById('PopupBackDrop');
+const eventTitleInput = document.getElementById('eventTitleInput');
+
+function openPopup(date) {
+  clicked = date;
+
+  const eventForDay = events.find(e => e.date === clicked);
+
+  if (eventForDay) {
+    document.getElementById('eventText').innerText = eventForDay.title;
+    deleteEventPopup.style.display = 'block';
+  } else {
+    newEventPopup.style.display = 'block';
+  }
+
+  backDrop.style.display = 'block';
+}
 
 let clicked = null;
 let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
@@ -223,18 +327,13 @@ const months = [
       days += `<div class="today">${i}</div>`;
     } else {
       days += `<div class="day">${i}</div>`;
-      document.getElementsByClassName("day"),addEventListener("click", () => console.log('click'));
+      document.getElementsByClassName("day"),addEventListener("click", () => openPopup('day'));
     }
   }
 
   for (let j = 1; j <= nextDays; j++) {
     days += `<div class="next-date">${j}</div>`;
-    monthDays.innerHTML = days;                              
-  
-  
-  
-  
-  
+    monthDays.innerHTML = days;                             
    }
 };
 
