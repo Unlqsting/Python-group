@@ -40,6 +40,22 @@
         </div>
     </div>
 
+    <div class="weathercontainer">
+      <div class="weatherheader">
+        <div class="weathertemptop">
+          <button id="shownight">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <button id="showday">
+            <i class="fa-solid fa-sun"></i>
+          </button>
+        </div>
+      </div>
+      <div class="weathertoday">
+
+      </div>
+    </div>
+
     <div id="newEventPopup">
       <h2>New Event</h2>
 
@@ -237,11 +253,20 @@ opacity: 0.5;
   background-color: rgba(0,0,0,0.8);
 }
 
+.weathercontainer {
+  max-width: 400px;
+  min-height: 800px;
+  background-color: #FFFFFF;
+  display: flex;
+}
+
 </style>
     
 <script>
 
 //popup
+
+
 const newEventPopup = document.getElementById('newEventPopup');
 const deleteEventPopup = document.getElementById('deleteEventPopup');
 const backDrop = document.getElementById('PopupBackDrop');
@@ -249,9 +274,8 @@ const eventTitleInput = document.getElementById('eventTitleInput');
 
 function openPopup(date) {
   clicked = date;
-
   const eventForDay = events.find(e => e.date === clicked);
-
+  // $(clicked).addClass("highlight");
   if (eventForDay) {
     document.getElementById('eventText').innerText = eventForDay.title;
     deleteEventPopup.style.display = 'block';
@@ -327,7 +351,11 @@ const months = [
       days += `<div class="today">${i}</div>`;
     } else {
       days += `<div class="day">${i}</div>`;
-      document.getElementsByClassName("day"),addEventListener("click", () => openPopup('day'));
+
+      document.getElementsByClassName("day"),addEventListener("click", () => {
+        openPopup('day')
+      });
+
     }
   }
 
@@ -346,7 +374,6 @@ document.querySelector(".next").addEventListener("click", () => {
   date.setMonth(date.getMonth() + 1);
   renderCalendar();
 });
-
 
 
 
