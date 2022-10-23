@@ -13,47 +13,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <div class="calendar">
-            <div class="month">
-                <i class="fas fa-angle-left 
-                prev"></i>
-                <div class="date">
-                    <h1></h1>
-                    <p></p>
-                </div>
-                <i class="fas fa-angle-right 
-                next"></i>
+    <div id="container">
+        <div id="calendartop">
+            <div id="month"></div>
+            <div>
+              <button id="backButton">Prev</button>
+              <button id="nextButton">Next</button>
             </div>
-            <div class="weekdays">
-                <div>Sun</div>
-                <div>Mon</div>
-                <div>Tue</div>
-                <div>Wed</div>
-                <div>Thr</div>
-                <div>Fri</div>
-                <div>Sat</div>
-            </div>
-              <div onclick class="days">
-    
-              </div>
         </div>
-    </div>
-
-    <div class="weathercontainer">
-      <div class="weatherheader">
-        <div class="weathertemptop">
-          <button id="shownight">
-            <i class="fa-solid fa-moon"></i>
-          </button>
-          <button id="showday">
-            <i class="fa-solid fa-sun"></i>
-          </button>
-        </div>
+        
+        <div id="weekdays">
+          <div>Sun</div>
+          <div>Mon</div>
+          <div>Tue</div>
+          <div>Wed</div>
+          <div>Thr</div>
+          <div>Fri</div>
+          <div>Sat</div>
       </div>
-      <div class="weathertoday">
 
-      </div>
+      <div id="calendar"></div>
     </div>
 
     <div id="newEventPopup">
@@ -75,141 +54,91 @@
     </div>
 
     <div id="PopupBackDrop"></div>
+
   </body>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Quicksand", sans-serif;
-}
 
-html {
-    font-size: 62.5%;
-}
+  button {
+    width: 75px;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px gray;
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+  }
 
-.container {
-    width: 100%;
-    height: 100vh;
-    background-color: #12121f;
-    color: #eee;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-}
-
-.calendar {
-    width: 45rem;
-    height: 52rem;
-    background-color: #222227;
-    box-shadow:0 0.5rem 3rem rgba(0 ,0 ,0 , 0.4);
-}
-
-.month {
-    width: 100%;
-    height: 12rem;
-    background-color: #167b7e;
+  #calendartop {
+    padding: 10px;
+    color: white;
+    font-size: 26px;
+    font-family: sans-serif;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem;
-    text-align: center;
-    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0,5);
-}
-.month i {
-    font-size: 2.5rem;
-    cursor: pointer;
-}
+  }
 
-.month h1 {
-    font-size: 3rem;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 0.2rem;
-    margin-bottom: 1rem;
-}
+  #calendartop button {
+    background-color: #FFFCFF;
+  }
 
-.month p {
-    font-size: 1.6rem;
-}
-
-.weekdays {
+  #container {
+    width: 770px;
+    background-color: rgb(0, 0, 0, 0.85);
+    
+  }
+  #weekdays {
     width: 100%;
-    height: 5rem;
-    padding: 0 0.4rem;
     display: flex;
-    align-items: center;
-}
-
-.weekdays div{
-    font-size: 1.5rem;
-    font-weight: 400;
-    letter-spacing: 0.1rem;
-    width: calc(44.2rem /7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-shadow: 0 0.3rem .5rem rgba(0, 0, 0, 
-    0.5);
-}
-
-.days {
+    color: white;
+    justify-content: right;
+    background-color: #167b7e;
+  }
+  #weekdays div {
+    width: 110px;
+    padding: 10px;
+    
+  }
+  #calendar {
     width: 100%;
+    margin: auto;
     display: flex;
     flex-wrap: wrap;
-    padding: 0.2rem;
-}
-
-.days div {
-    font-size: 1.4rem;
-    margin: 0.3rem;
-    width: calc(40.2rem/7);
-    height: 5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 
-    0.5);
-    transition: background-color 0.2s;
-}
-
-.days div:hover:not(.today) {
-    background-color: #262626;
-    border: 0.2rem solid #777;
+  }
+  .day {
+    width: 100px;
+    padding: 10px;
+    height: 100px;
     cursor: pointer;
-}
+    box-sizing: border-box;
+    background-color: rgb(51, 51, 51);
+    margin: 5px;
+    box-shadow: 0px 0px 3px #CBD4C2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+  }
+  .day:hover {
+    background-color: #38878a;
+  }
 
-
-
-.prev-date,
-.next-date {
-opacity: 0.5;
-}
-
-.today {
-    background-color: #167e56;
-}
-
-.event {
-  font-size: 10px;
-  padding: 3px;
-  background-color: #58bae4;
-  color: rgb(51, 49, 49);
-  border-radius: 5px;
-  max-height: 55px;
-  overflow: hidden;
-}
-.padding {
+  .day + #currentDay {
+    background-color:#e8f4fa;
+  }
+  
+  .padding {
   cursor: default !important;
   background-color: #FFFCFF !important;
   box-shadow: none !important;
 }
+
 #newEventPopup, #deleteEventPopup {
   display: none;
   z-index: 20;
   padding: 25px;
-  background-color: #167b7e;
+  background-color: #002d44;
   box-shadow: 0px 0px 3px black;
   border-radius: 5px;
   width: 350px;
@@ -217,6 +146,7 @@ opacity: 0.5;
   left: calc(50% - 175px);
   position: absolute;
   font-family: sans-serif;
+  color: white;
 }
 #eventTitleInput {
   padding: 10px;
@@ -226,18 +156,21 @@ opacity: 0.5;
   border-radius: 3px;
   outline: none;
   border: none;
-  box-shadow: 0px 0px 5px gray;
+  box-shadow: 0px 0px 3px gray;
 }
-#eventTitleInput.error {
-  border: 2px solid red;
-}
+
 #cancelButton, #deleteButton {
-  background-color: #d36c6c;
-  width: 100%;
+  background-color: rgb(221, 0, 0);
+  border-radius: 10px;
+  color: white;
+  border-color: white;
 }
 #saveButton, #closeButton {
-  background-color: #92a1d1;
-  width: 100%;
+  background-color: #38878a;
+  border-radius: 10px;
+  border: 5px;
+  border-color: white;
+  color: white;
 }
 #eventText {
   font-size: 14px;
@@ -247,138 +180,114 @@ opacity: 0.5;
   top: 0px;
   left: 0px;
   z-index: 10;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   position: absolute;
   background-color: rgba(0,0,0,0.8);
-}
-
-.weathercontainer {
-  max-width: 400px;
-  min-height: 800px;
-  background-color: #FFFFFF;
-  display: flex;
 }
 
 </style>
     
 <script>
 
-//popup
+  //popup
+  const newEventPopup = document.getElementById('newEventPopup');
+  const deleteEventPopup = document.getElementById('deleteEventPopup');
+  const backDrop = document.getElementById('PopupBackDrop');
+  const eventTitleInput = document.getElementById('eventTitleInput');
 
+  function openPopup(date) {
+    clicked = date;
 
-const newEventPopup = document.getElementById('newEventPopup');
-const deleteEventPopup = document.getElementById('deleteEventPopup');
-const backDrop = document.getElementById('PopupBackDrop');
-const eventTitleInput = document.getElementById('eventTitleInput');
+    const eventForDay = events.find(e => e.date === clicked);
 
-function openPopup(date) {
-  clicked = date;
-  const eventForDay = events.find(e => e.date === clicked);
-  // $(clicked).addClass("highlight");
-  if (eventForDay) {
-    document.getElementById('eventText').innerText = eventForDay.title;
-    deleteEventPopup.style.display = 'block';
-  } else {
-    newEventPopup.style.display = 'block';
-  }
-
-  backDrop.style.display = 'block';
-}
-
-let clicked = null;
-let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
-
-const date = new Date();
-
-const renderCalendar = () => {
-  date.setDate(1);
-
-const monthDays = document.querySelector(".days");
-
-const lastDay = new Date(
-    date.getFullYear(),
-    date.getMonth() + 1,
-    0
-  ).getDate();
-
-const prevLastDay = new Date(
-    date.getFullYear(),
-    date.getMonth(),
-    0
-  ).getDate();
-
-const firstDayIndex = date.getDay();
-
-const lastDayIndex = new Date(
-    date.getFullYear(),
-    date.getMonth() + 1,
-    0
-  ).getDay();
-
-const nextDays = 7 - lastDayIndex - 1;
-
-const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-
-  document.querySelector(".date h1").innerHTML = months[date.getMonth()];
-
-  document.querySelector(".date p").innerHTML = new Date().toDateString();
-
-  let days = "";
-
-  for (let x = firstDayIndex; x > 0; x--) {
-    days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
-  }
-
-  for (let i = 1; i <= lastDay; i++) {
-    if (
-      i === new Date().getDate() &&
-      date.getMonth() === new Date().getMonth()
-    ) {
-      days += `<div class="today">${i}</div>`;
+    if (eventForDay) {
+      document.getElementById('eventText').innerText = eventForDay.title;
+      deleteEventPopup.style.display = 'block';
     } else {
-      days += `<div class="day">${i}</div>`;
-
-      document.getElementsByClassName("day"),addEventListener("click", () => {
-        openPopup('day')
-      });
-
+      newEventPopup.style.display = 'block';
     }
+
+    backDrop.style.display = 'block';
   }
 
-  for (let j = 1; j <= nextDays; j++) {
-    days += `<div class="next-date">${j}</div>`;
-    monthDays.innerHTML = days;                             
-   }
-};
 
-document.querySelector(".prev").addEventListener("click", () => {
-  date.setMonth(date.getMonth() - 1);
+  let monthNav = 0;
+  let clicked = null;
+  let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
+
+  const calendar = document.getElementById('calendar');
+  
+  
+//code for calendar render, prev/next days, and more date stuff using javascripts built-in date api
+  function renderCalendar() {
+    
+    const date = new Date();
+
+    if (monthNav !== 0) {
+      date.setMonth(new Date().getMonth() + nav);
+    }
+
+    const day = date.getDate();
+    const month = date.getMonth();
+    const year = date.getFullYear();
+
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const firstDayOfMonth = new Date(year, month, 1);
+    const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  
+    const dateString = firstDayOfMonth.toLocaleDateString('en-US', {
+
+      weekday: 'long',
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+
+    });
+
+    document.getElementById('calendartop').innerText = 
+      `${date.toLocaleDateString('en-us', {month: 'long'})} ${date.toLocaleString('en-us', {day: 'numeric'})} ${year}`;
+
+    const prevDays = weekdays.indexOf(dateString.split(', ')[0]);
+
+    // calendar.innerHTML = "";
+
+    for(let i = 0; i <= prevDays + daysInMonth; i++) {
+      const daySquare = document.createElement('div');
+      daySquare.classList.add('day');
+
+      //rendering previous day or actual daysquare?
+        if (i > prevDays) {
+          daySquare.innerText = i - prevDays;
+
+          daySquare.addEventListener('click', () => openPopup());
+        } 
+        else {
+          daySquare.classList.add('padding');
+        }
+    calendar.appendChild(daySquare);
+    }
+  
+  } 
+
+  function buttons () {
+    document.getElementById('nextButton').addEventListener('click', () => {
+      monthNav++;
+      renderCalendar();
+    });
+
+    document.getElementById('backButton').addEventListener('click', () => {
+      monthNav--;
+      renderCalendar();
+    })
+
+  }
+
   renderCalendar();
-});
 
-document.querySelector(".next").addEventListener("click", () => {
-  date.setMonth(date.getMonth() + 1);
-  renderCalendar();
-});
-
-
-
-renderCalendar();
 </script>
+
 </body>
 </html>
 {% endblock %}
+
