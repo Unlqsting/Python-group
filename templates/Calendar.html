@@ -248,8 +248,8 @@
 
     });
 
-    document.getElementById('calendartop').innerText = 
-      `${date.toLocaleDateString('en-us', {month: 'long'})} ${date.toLocaleString('en-us', {day: 'numeric'})} ${year}`;
+    {% comment %} document.getElementById('calendartop').innerText = 
+      `${date.toLocaleDateString('en-us', {month: 'long'})} ${date.toLocaleString('en-us', {day: 'numeric'})} ${year}`; {% endcomment %}
 
     const prevDays = weekdays.indexOf(dateString.split(', ')[0]);
 
@@ -288,6 +288,14 @@
 
   renderCalendar();
 
+  let saveButton = [];
+    const addEvent = (ev)=>{
+      ev.preventDefault();
+      let Event = {
+        date: 
+        title:
+       }
+    } 
 </script>
 
 </body>
