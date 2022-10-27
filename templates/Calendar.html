@@ -21,12 +21,12 @@
       <div id="calendartop">
             
           <div id="month">  
-            <button id="backButton">Prev</button>
+            <button id="backButton" onclick="buttons()">Prev</button>
             <div id="date">
               <h1></h1>
               <p></p>
             </div>
-            <button id="nextButton">Next</button>
+            <button id="nextButton" onclick="buttons()">Next</button>
           </div>
         </div>
         
@@ -268,9 +268,15 @@ button {
 </style>
     
 <script>
+    var savedEvents = {
+      
+    }
+
   function updateCal() {
+    document.getElementById('eventTitleInput').value = ''
     closePopup();
     console.log('hello')
+    getclickeddate();
   }
 
   //popup
@@ -333,8 +339,9 @@ button {
 
     });
 
-  // document.getElementById('month').innerText = 
+  // document.getElementById('calendarHeader').innerText = 
   //   `${date.toLocaleDateString('en-us', { month: 'long' })} ${year}`; 
+
   
   calendar.innerHTML = '';
     
@@ -350,7 +357,7 @@ button {
         if (i > prevDays) {
           daySquare.innerText = i - prevDays;
 
-          daySquare.addEventListener('click', () => openPopup());
+          daySquare.addEventListener('click', () => openPopup(daySquare));
         } 
         else {
           daySquare.classList.add('padding');
@@ -360,7 +367,7 @@ button {
   
   } 
 
-  const months = [
+  const month = [
     "January",
     "February",
     "March",
@@ -379,7 +386,7 @@ button {
 
   // document.getElementById("p").innerHTML = new Date().toDateString();
 
-  function buttons () {
+  function buttons() {
     document.getElementById('nextButton').addEventListener('click', () => {
       monthNav++
       renderCalendar();
@@ -393,7 +400,16 @@ button {
   }
 
   
+  function getclickeddate() {
+    console.log("retrieving clicked date");
+    console.log(date.getMonth());
+    // clickedday = date.getDate(daySquare);
+    // console.log(clickedday);
+  }
 
+  function saveEvent(day, input) {
+
+  }
 
 
   renderCalendar();
@@ -406,6 +422,8 @@ button {
   //       title:
   //      }
   //   } 
+
+
 </script>
 
 </body>
