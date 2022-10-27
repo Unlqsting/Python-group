@@ -14,13 +14,22 @@
 </head>
 <body>
     <div id="container">
-        <div id="calendartop">
-            <div id="month"></div>
-            <div>
-              <button id="backButton">Prev</button>
-              <button id="nextButton">Next</button>
+      <div id="calendarHeader">
+        
+          
+      </div> 
+      <div id="calendartop">
+            
+          <div id="month">  
+            <button id="backButton">Prev</button>
+            <div id="date">
+              <h1></h1>
+              <p></p>
             </div>
+            <button id="nextButton">Next</button>
+          </div>
         </div>
+        
         
         <div id="weekdays">
           <div>Sun</div>
@@ -55,11 +64,70 @@
 
     <div id="PopupBackDrop"></div>
 
+    <!-- weather thing -->
+
+    <div id="weatherContainer">
+      <div id="weatherHeader">
+        
+        <i class="fa-solid fa-moon">night</i>
+        <i class="fa-solid fa-sun">day</i>
+        
+        <div id="L"></div>
+        <div id="H"></div>
+        
+        <div id="tempHeader"></div>
+      
+        <div id="hourlyWeather"></div>
+
+      </div>
+
+      <div id="weekWeather"></div>
+
+    </div>
+
+    <!-- weather thing -->
+
   </body>
 
 <style>
 
-  button {
+/*WEATHER THING  */
+  
+#weatherContainer {
+  width: 450px;
+  height: 728px;
+  background-color: #002d44;
+  justify-content: center;
+  float: right;
+  right: 5px;
+  position: relative;
+  bottom: 728px;
+}
+
+#weatherHeader {
+  width: 450px;
+  height: 100px;
+  background-color: #167b7e;
+}
+
+
+/* WEATHER THING */
+
+
+
+/* #month h1 {
+  font-size: 3rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  margin-bottom: 1rem;
+}
+
+#month p {
+  font-size: 1.6rem;
+} */
+
+button {
     width: 75px;
     cursor: pointer;
     box-shadow: 0px 0px 2px gray;
@@ -68,6 +136,7 @@
     padding: 5px;
     border-radius: 5px;
     color: rgb(255, 255, 255);
+    
   }
 
   #calendartop {
@@ -78,15 +147,25 @@
     display: flex;
     justify-content: space-between;
   }
+  /* #month {
+    height: 200px;
+  } */
 
-  #calendartop button {
-    background-color: #FFFCFF;
+  #backButton {
+    background-color: #167b7e;
+    position: relative;
+    left: 650px;
+  }
+  #nextButton {
+    background-color: #167b7e;
+    position: relative;
+    left: 650px;
   }
 
   #container {
     width: 770px;
     background-color: rgb(0, 0, 0, 0.85);
-    
+    left: 5px;
   }
   #weekdays {
     width: 100%;
@@ -234,7 +313,7 @@
     const date = new Date();
 
     if (monthNav !== 0) {
-      date.setMonth(new Date().getMonth() + nav);
+      date.setMonth(new Date().getMonth() + monthNav);
     }
 
     const day = date.getDate();
@@ -254,12 +333,14 @@
 
     });
 
-    {% comment %} document.getElementById('calendartop').innerText = 
-      `${date.toLocaleDateString('en-us', {month: 'long'})} ${date.toLocaleString('en-us', {day: 'numeric'})} ${year}`; {% endcomment %}
+  // document.getElementById('month').innerText = 
+  //   `${date.toLocaleDateString('en-us', { month: 'long' })} ${year}`; 
+  
+  calendar.innerHTML = '';
+    
+  const prevDays = weekdays.indexOf(dateString.split(', ')[0]);
 
-    const prevDays = weekdays.indexOf(dateString.split(', ')[0]);
-
-    // calendar.innerHTML = "";
+   
 
     for(let i = 0; i <= prevDays + daysInMonth; i++) {
       const daySquare = document.createElement('div');
@@ -279,29 +360,52 @@
   
   } 
 
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  // document.getElementById("h1").innerHTML = months[date.getMonth()];
+
+  // document.getElementById("p").innerHTML = new Date().toDateString();
+
   function buttons () {
     document.getElementById('nextButton').addEventListener('click', () => {
-      monthNav++;
+      monthNav++
       renderCalendar();
     });
 
     document.getElementById('backButton').addEventListener('click', () => {
-      monthNav--;
+      monthNav--
       renderCalendar();
     })
 
   }
 
+  
+
+
+
   renderCalendar();
 
-  let saveButton = [];
-    const addEvent = (ev)=>{
-      ev.preventDefault();
-      let Event = {
-        date: 
-        title:
-       }
-    } 
+  // let saveButton = [];
+  //   const addEvent = (ev)=>{
+  //     ev.preventDefault();
+  //     let Event = {
+  //       date: 
+  //       title:
+  //      }
+  //   } 
 </script>
 
 </body>
