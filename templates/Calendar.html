@@ -68,16 +68,21 @@
 
     <div id="weatherContainer">
       <div id="weatherHeader">
+        <div class="search">
+          <input type="text" class="searchbar">
+          <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div class="weather"></div>
         
-        <i class="fa-solid fa-moon">night</i>
-        <i class="fa-solid fa-sun">day</i>
-        
-        <div id="L"></div>
-        <div id="H"></div>
-        
-        <div id="tempHeader"></div>
-      
-        <div id="hourlyWeather"></div>
+        <div id="tempHeader">
+          <h1 class="city">San Diego</h1>
+
+          <h2 class="currenttemp">72F</h2>
+
+          <div class="H"></div>
+          <div class="L"></div>
+
+        </div>
 
       </div>
 
@@ -96,19 +101,28 @@
 #weatherContainer {
   width: 450px;
   height: 728px;
-  background-color: #002d44;
+  background: #222;
   justify-content: center;
   float: right;
   right: 5px;
   position: relative;
   bottom: 728px;
 }
-
 #weatherHeader {
   width: 450px;
-  height: 100px;
-  background-color: #167b7e;
+  height: 400px;
+  background-color: #002d44;
 }
+.city, .currenttemp {
+  padding: 20px;
+  text-shadow:#38878a, 5px;
+  opacity: 100%;
+}
+
+button {
+  top: 5px;
+}
+
 
 
 /* WEATHER THING */
@@ -410,6 +424,14 @@ button {
   function saveEvent(day, input) {
 
   }
+
+  //weather stuff:
+
+  let weather = {
+    
+  };
+
+  //weather stuff:
 
 
   renderCalendar();
