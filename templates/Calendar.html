@@ -294,10 +294,13 @@ button {
     }
 
   function updateCal() {
+    console.log("retrieving clicked date");
+    console.log(clicked);
+    // savedEvents[clicked + ' events'] = Array();
+    savedEvents[clicked + ' ' + document.getElementById("calendarHeader").innerText + ' events'].push(document.getElementById('eventTitleInput').value);
     document.getElementById('eventTitleInput').value = ''
     closePopup();
-    console.log('hello')
-    getclickeddate();
+    console.log(savedEvents)
   }
 
   //popup
@@ -308,7 +311,6 @@ button {
 
   function openPopup(date) {
     clicked = date;
-
     const eventForDay = events.find(e => e.date === clicked);
 
     if (eventForDay) {
@@ -392,8 +394,9 @@ button {
       //rendering previous day or actual daysquare?
         if (i > prevDays) {
           daySquare.innerText = i - prevDays;
+          savedEvents[daySquare.innerHTML + ' ' + document.getElementById("calendarHeader").innerText + ' events'] = Array();
+          daySquare.addEventListener('click', () => openPopup(daySquare.innerHTML));
 
-          daySquare.addEventListener('click', () => openPopup(daySquare));
         } 
         else {
           daySquare.classList.add('padding');
@@ -422,12 +425,12 @@ button {
   }
 
   
-  function getclickeddate() {
-    console.log("retrieving clicked date");
-    console.log(date.getMonth());
-    // clickedday = date.getDate(daySquare);
-    // console.log(clickedday);
-  }
+  // function getclickeddate() {
+  //   console.log("retrieving clicked date");
+  //   console.log(date.getMonth());
+  //   // clickedday = date.getDate(daySquare);
+  //   // console.log(clickedday);
+  // }
 
   function saveEvent(day, input) {
 
@@ -443,28 +446,28 @@ button {
 
 
   renderCalendar();
- var dict = [];
+//  var dict = [];
 
-dict1["Event"]=prompt("What event do you want to schedule? ");
-dict2["Date"]=input
+// dict1["Event"]=prompt("What event do you want to schedule? ");
+// dict2["Date"]=input
 
 
-  Name = "Event"
-  Date = "Etc"
+//   Name = "Event"
+//   Date = "Etc"
 
-dict[key] = value
-dict.key = new_value; 
-var value = dict.key;
-delete dict.key;
+// dict[key] = value
+// dict.key = new_value; 
+// var value = dict.key;
+// delete dict.key;
 
-  {% comment %} let saveButton = [];
-    const addEvent = (ev)=>{
-      ev.preventDefault();
-      let Event = {
-        date: 
-        title:
-       }
-    }  {% endcomment %}
+// let saveButton = [];
+//     const addEvent = (ev)=>{
+//       ev.preventDefault();
+//       let Event = {
+//         // date: 
+//         // title:
+//        }
+//     }
 
 
   // let saveButton = [];
