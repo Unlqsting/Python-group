@@ -21,12 +21,12 @@
       <div id="calendartop">
             
           <div id="month">  
-            <button id="backButton" onclick="buttons()">Prev</button>
+            <!-- <button id="backButton" onclick="buttons()">Prev</button>
             <div id="date">
               <h1></h1>
               <p></p>
             </div>
-            <button id="nextButton" onclick="buttons()">Next</button>
+            <button id="nextButton" onclick="buttons()">Next</button> -->
           </div>
         </div>
         
@@ -151,6 +151,13 @@ button {
     border-radius: 5px;
     color: rgb(255, 255, 255);
     
+  }
+  
+  #calendarHeader {
+    font-size: 50px;
+    color: white;
+    background-color: rgb(76, 159, 140);
+    text-align: center;
   }
 
   #calendartop {
@@ -326,26 +333,39 @@ button {
 
   const calendar = document.getElementById('calendar');
   
-  
+
+  const month = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
 //code for calendar render, prev/next days, and more date stuff using javascripts built-in date api
   function renderCalendar() {
     
     const date = new Date();
-
-    if (monthNav !== 0) {
-      date.setMonth(new Date().getMonth() + monthNav);
-    }
+    
+    // if (monthNav !== 0) {
+    //   date.setMonth(new Date().getMonth() + monthNav);
+    // }
 
     const day = date.getDate();
     const month = date.getMonth();
     const year = date.getFullYear();
-
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const firstDayOfMonth = new Date(year, month, 1);
     const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   
     const dateString = firstDayOfMonth.toLocaleDateString('en-US', {
-
       weekday: 'long',
       year: 'numeric',
       month: 'numeric',
@@ -353,8 +373,10 @@ button {
 
     });
 
-  // document.getElementById('calendarHeader').innerText = 
-  //   `${date.toLocaleDateString('en-us', { month: 'long' })} ${year}`; 
+
+    
+  document.getElementById('calendarHeader').innerText = 
+    `${date.toLocaleDateString('en-us', { month: 'long' })} ${year}`; 
 
   
   calendar.innerHTML = '';
@@ -381,20 +403,6 @@ button {
   
   } 
 
-  const month = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
 
   // document.getElementById("h1").innerHTML = months[date.getMonth()];
 
@@ -402,14 +410,14 @@ button {
 
   function buttons() {
     document.getElementById('nextButton').addEventListener('click', () => {
-      monthNav++
+ 
       renderCalendar();
     });
 
-    document.getElementById('backButton').addEventListener('click', () => {
-      monthNav--
-      renderCalendar();
-    })
+    // document.getElementById('backButton').addEventListener('click', () => {
+    //   date.getMonth() - 1;
+    //   renderCalendar();
+    // })
 
   }
 
