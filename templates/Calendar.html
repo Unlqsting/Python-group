@@ -318,13 +318,14 @@ button {
   color: white;
   border-color: white;
 }
-#saveButton, #closeButton {
+#saveButton, #closeButton, {
   background-color: #38878a;
   border-radius: 10px;
   border: 5px;
   border-color: white;
   color: white;
 }
+
 #eventText {
   font-size: 14px;
 }
@@ -478,12 +479,21 @@ button {
   }
 
   
+<<<<<<< HEAD
+  {% comment %} function getclickeddate() {
+    console.log("retrieving clicked date");
+    console.log(date.getMonth()); {% endcomment %}
+    // clickedday = date.getDate(daySquare);
+    // console.log(clickedday);
+  }
+=======
   // function getclickeddate() {
   //   console.log("retrieving clicked date");
   //   console.log(date.getMonth());
   //   // clickedday = date.getDate(daySquare);
   //   // console.log(clickedday);
   // }
+>>>>>>> 3c1823a4e30918f5c3d6f7b04df2f65f00a30392
 
   function saveEvent(day, input) {
 
@@ -502,7 +512,25 @@ button {
 
 
   renderCalendar();
+<<<<<<< HEAD
+
+   form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const fd = new FormData(form);
+    const obj = Object.fromEntries(fd)
+    console.log(obj); 
+
+    JSON.stringify(obj);
+    localStorage.setItem('form', json);
+
+    
+    }) 
+
+
+ var dict = [];
+=======
 //  var dict = [];
+>>>>>>> 3c1823a4e30918f5c3d6f7b04df2f65f00a30392
 
 // dict1["Event"]=prompt("What event do you want to schedule? ");
 // dict2["Date"]=input
@@ -516,6 +544,16 @@ button {
 // var value = dict.key;
 // delete dict.key;
 
+<<<<<<< HEAD
+  let saveButton = [];
+    const addEvent = (ev)=>{
+      ev.preventDefault();
+      let Event = {
+        date: 
+        title:
+       }
+    }  
+=======
 // let saveButton = [];
 //     const addEvent = (ev)=>{
 //       ev.preventDefault();
@@ -524,6 +562,7 @@ button {
 //         // title:
 //        }
 //     }
+>>>>>>> 3c1823a4e30918f5c3d6f7b04df2f65f00a30392
 
 
   // let saveButton = [];
