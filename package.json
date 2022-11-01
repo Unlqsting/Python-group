@@ -16,5 +16,7 @@
   "bugs": {
     "url": "https://github.com/Unlqsting/Scheduler/issues"
   },
-  "homepage": "https://github.com/Unlqsting/Scheduler#readme"
+  "homepage": "https://github.com/Unlqsting/Scheduler#readme",
+  "dependencies": {},
+  "devDependencies": {}
 }

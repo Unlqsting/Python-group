@@ -53,3 +53,16 @@ for re in result:
 			print("High:", re["high"])
 			print("Weather:", re["text"])
 			count = count + 1
+
+
+{% comment %} const api = "https://yahoo-weather5.p.rapidapi.com/weather"
+
+async function displayWeather {
+	const response = await fetch(api)
+	const data = await response.json()
+}
+
+api(); {% endcomment %}
+
+
+{% comment %} ^^^ Just testing this for now {% endcomment %}
