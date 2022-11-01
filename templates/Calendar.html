@@ -21,12 +21,12 @@
       <div id="calendartop">
             
           <div id="month">  
-            <button id="backButton" onclick="buttons()">Prev</button>
+            <!-- <button id="backButton" onclick="buttons()">Prev</button>
             <div id="date">
               <h1></h1>
               <p></p>
             </div>
-            <button id="nextButton" onclick="buttons()">Next</button>
+            <button id="nextButton" onclick="buttons()">Next</button> -->
           </div>
         </div>
         
@@ -67,20 +67,18 @@
     <!-- weather thing -->
 
     <div id="weatherContainer">
-      <div id="weatherHeader">
-        <div class="search">
-          <input type="text" class="searchbar">
-          <button><i class="fa-solid fa-magnifying-glass"></i></button>
+      <div class="search">
+          <input type="text" class="searchbar" placeholder="Enter city name..." />
+          <button onclick=""><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
-        <div class="weather"></div>
-        
+      <div id="weatherHeader">
         <div id="tempHeader">
           <h1 class="city">San Diego</h1>
 
-          <h2 class="currenttemp">72F</h2>
-
-          <div class="H"></div>
-          <div class="L"></div>
+          <h2 class="currenttemp">72<span>&#176;f</span></h2>
+          <div class="weather">Sunny</div>
+          <div class="H">H: 75<span>&#176;f</span></div>
+          <div class="L">L: 65<span>&#176;f</span></div>
 
         </div>
 
@@ -97,35 +95,90 @@
 <style>
 
 /*WEATHER THING  */
-  
+.H, .L {
+  font-weight: 500;
+  font-style: italic;
+  padding: 5px;
+}
+.weather {
+  font-size: 25px;
+  font-weight: 900;
+  font-style: italic;
+  margin-bottom: 15px;
+
+}
+.search {
+  width: 100%;
+  height: 100%;
+  width: 450px;
+  height: 100px;
+  background-color: rgb(8, 112, 112);
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}  
+.searchbar {
+  width: 100%;
+  width: 300px;
+  height: 35px;
+  display: flex;
+}
+i {
+  height: 100%;
+  height: 25px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  font-size: 23px;
+}
 #weatherContainer {
   width: 450px;
   height: 728px;
   background: #222;
-  justify-content: center;
+  align-items: center;
   float: right;
   right: 5px;
   position: relative;
-  bottom: 728px;
+  bottom: 685px;
+  font-family: 'montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
 }
 #weatherHeader {
+  width: 100%;
   width: 450px;
   height: 400px;
   background-color: #002d44;
+  display: flex;
+  align-items: center;
 }
-.city, .currenttemp {
-  padding: 20px;
+.city, .currenttemp, .weather, .H, .L {
   text-shadow:#38878a, 5px;
   opacity: 100%;
+  display: flex;
+  align-items: center;
+  color: antiquewhite;
+  transform: translateX(75%);
+  justify-content: center;
+  text-align: center;
 }
-
-button {
-  top: 5px;
+.currenttemp {
+  font-size: 50px;
+  font-weight: 900;
+  margin: 30px 0px;
+  text-shadow: 2px 3px rgba(0, 0, 0, 0.6);
 }
-
 
 
 /* WEATHER THING */
+
+/* saved events */
+
+
+
+/* saved events */
 
 
 
@@ -151,6 +204,13 @@ button {
     border-radius: 5px;
     color: rgb(255, 255, 255);
     
+  }
+  
+  #calendarHeader {
+    font-size: 50px;
+    color: white;
+    background-color: rgb(76, 159, 140);
+    text-align: center;
   }
 
   #calendartop {
@@ -288,10 +348,13 @@ button {
     }
 
   function updateCal() {
+    console.log("retrieving clicked date");
+    console.log(clicked);
+    // savedEvents[clicked + ' events'] = Array();
+    savedEvents[clicked + ' ' + document.getElementById("calendarHeader").innerText + ' events'].push(document.getElementById('eventTitleInput').value);
     document.getElementById('eventTitleInput').value = ''
     closePopup();
-    console.log('hello')
-    getclickeddate();
+    console.log(savedEvents)
   }
 
   //popup
@@ -302,7 +365,6 @@ button {
 
   function openPopup(date) {
     clicked = date;
-
     const eventForDay = events.find(e => e.date === clicked);
 
     if (eventForDay) {
@@ -327,60 +389,6 @@ button {
 
   const calendar = document.getElementById('calendar');
   
-  
-//code for calendar render, prev/next days, and more date stuff using javascripts built-in date api
-  function renderCalendar() {
-    
-    const date = new Date();
-
-    if (monthNav !== 0) {
-      date.setMonth(new Date().getMonth() + monthNav);
-    }
-
-    const day = date.getDate();
-    const month = date.getMonth();
-    const year = date.getFullYear();
-
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-    const firstDayOfMonth = new Date(year, month, 1);
-    const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  
-    const dateString = firstDayOfMonth.toLocaleDateString('en-US', {
-
-      weekday: 'long',
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric', 
-
-    });
-
-  // document.getElementById('calendarHeader').innerText = 
-  //   `${date.toLocaleDateString('en-us', { month: 'long' })} ${year}`; 
-
-  
-  calendar.innerHTML = '';
-    
-  const prevDays = weekdays.indexOf(dateString.split(', ')[0]);
-
-   
-
-    for(let i = 0; i <= prevDays + daysInMonth; i++) {
-      const daySquare = document.createElement('div');
-      daySquare.classList.add('day');
-
-      //rendering previous day or actual daysquare?
-        if (i > prevDays) {
-          daySquare.innerText = i - prevDays;
-
-          daySquare.addEventListener('click', () => openPopup(daySquare));
-        } 
-        else {
-          daySquare.classList.add('padding');
-        }
-    calendar.appendChild(daySquare);
-    }
-  
-  } 
 
   const month = [
     "January",
@@ -397,30 +405,95 @@ button {
     "December",
   ];
 
+//code for calendar render, prev/next days, and more date stuff using javascripts built-in date api
+  function renderCalendar() {
+    
+    const date = new Date();
+    
+    // if (monthNav !== 0) {
+    //   date.setMonth(new Date().getMonth() + monthNav);
+    // }
+
+    const day = date.getDate();
+    const month = date.getMonth();
+    const year = date.getFullYear();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const firstDayOfMonth = new Date(year, month, 1);
+    const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  
+    const dateString = firstDayOfMonth.toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric', 
+
+    });
+
+
+    
+  document.getElementById('calendarHeader').innerText = 
+    `${date.toLocaleDateString('en-us', { month: 'long' })} ${year}`; 
+
+  
+  calendar.innerHTML = '';
+    
+  const prevDays = weekdays.indexOf(dateString.split(', ')[0]);
+
+   
+
+    for(let i = 0; i <= prevDays + daysInMonth; i++) {
+      const daySquare = document.createElement('div');
+      daySquare.classList.add('day');
+
+      //rendering previous day or actual daysquare?
+        if (i > prevDays) {
+          daySquare.innerText = i - prevDays;
+          savedEvents[daySquare.innerHTML + ' ' + document.getElementById("calendarHeader").innerText + ' events'] = Array();
+          daySquare.addEventListener('click', () => openPopup(daySquare.innerHTML));
+
+        } 
+        else {
+          daySquare.classList.add('padding');
+        }
+    calendar.appendChild(daySquare);
+    }
+  
+  } 
+
+
   // document.getElementById("h1").innerHTML = months[date.getMonth()];
 
   // document.getElementById("p").innerHTML = new Date().toDateString();
 
   function buttons() {
     document.getElementById('nextButton').addEventListener('click', () => {
-      monthNav++
+ 
       renderCalendar();
     });
 
-    document.getElementById('backButton').addEventListener('click', () => {
-      monthNav--
-      renderCalendar();
-    })
+    // document.getElementById('backButton').addEventListener('click', () => {
+    //   date.getMonth() - 1;
+    //   renderCalendar();
+    // })
 
   }
 
   
+<<<<<<< HEAD
   {% comment %} function getclickeddate() {
     console.log("retrieving clicked date");
     console.log(date.getMonth()); {% endcomment %}
     // clickedday = date.getDate(daySquare);
     // console.log(clickedday);
   }
+=======
+  // function getclickeddate() {
+  //   console.log("retrieving clicked date");
+  //   console.log(date.getMonth());
+  //   // clickedday = date.getDate(daySquare);
+  //   // console.log(clickedday);
+  // }
+>>>>>>> 3c1823a4e30918f5c3d6f7b04df2f65f00a30392
 
   function saveEvent(day, input) {
 
@@ -429,13 +502,17 @@ button {
   //weather stuff:
 
   let weather = {
-    
+    // put your api stuff here
   };
+
+  // const searchbutton = document.querySelector('');
+   // searchbutton.addEventListener('click', )
 
   //weather stuff:
 
 
   renderCalendar();
+<<<<<<< HEAD
 
    form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -451,19 +528,23 @@ button {
 
 
  var dict = [];
+=======
+//  var dict = [];
+>>>>>>> 3c1823a4e30918f5c3d6f7b04df2f65f00a30392
 
-dict1["Event"]=prompt("What event do you want to schedule? ");
-dict2["Date"]=input
+// dict1["Event"]=prompt("What event do you want to schedule? ");
+// dict2["Date"]=input
 
 
-  Name = "Event"
-  Date = "Etc"
+//   Name = "Event"
+//   Date = "Etc"
 
-dict[key] = value
-dict.key = new_value; 
-var value = dict.key;
-delete dict.key;
+// dict[key] = value
+// dict.key = new_value; 
+// var value = dict.key;
+// delete dict.key;
 
+<<<<<<< HEAD
   let saveButton = [];
     const addEvent = (ev)=>{
       ev.preventDefault();
@@ -472,6 +553,16 @@ delete dict.key;
         title:
        }
     }  
+=======
+// let saveButton = [];
+//     const addEvent = (ev)=>{
+//       ev.preventDefault();
+//       let Event = {
+//         // date: 
+//         // title:
+//        }
+//     }
+>>>>>>> 3c1823a4e30918f5c3d6f7b04df2f65f00a30392
 
 
   // let saveButton = [];
