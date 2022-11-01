@@ -55,14 +55,14 @@ for re in result:
 			count = count + 1
 
 
-{% comment %} const api = "https://yahoo-weather5.p.rapidapi.com/weather"
+# {% comment %} const api = "https://yahoo-weather5.p.rapidapi.com/weather"
 
-async function displayWeather {
-	const response = await fetch(api)
-	const data = await response.json()
-}
+# async function displayWeather {
+# 	const response = await fetch(api)
+# 	const data = await response.json()
+# }
 
-api(); {% endcomment %}
+# api(); {% endcomment %}
 
 
-{% comment %} ^^^ Just testing this for now {% endcomment %}
+# {% comment %} ^^^ Just testing this for now {% endcomment %}
