@@ -258,13 +258,14 @@ button {
   color: white;
   border-color: white;
 }
-#saveButton, #closeButton {
+#saveButton, #closeButton, {
   background-color: #38878a;
   border-radius: 10px;
   border: 5px;
   border-color: white;
   color: white;
 }
+
 #eventText {
   font-size: 14px;
 }
@@ -414,9 +415,9 @@ button {
   }
 
   
-  function getclickeddate() {
+  {% comment %} function getclickeddate() {
     console.log("retrieving clicked date");
-    console.log(date.getMonth());
+    console.log(date.getMonth()); {% endcomment %}
     // clickedday = date.getDate(daySquare);
     // console.log(clickedday);
   }
@@ -435,6 +436,20 @@ button {
 
 
   renderCalendar();
+
+   form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const fd = new FormData(form);
+    const obj = Object.fromEntries(fd)
+    console.log(obj); 
+
+    JSON.stringify(obj);
+    localStorage.setItem('form', json);
+
+    
+    }) 
+
+
  var dict = [];
 
 dict1["Event"]=prompt("What event do you want to schedule? ");
@@ -449,14 +464,14 @@ dict.key = new_value;
 var value = dict.key;
 delete dict.key;
 
-  {% comment %} let saveButton = [];
+  let saveButton = [];
     const addEvent = (ev)=>{
       ev.preventDefault();
       let Event = {
         date: 
         title:
        }
-    }  {% endcomment %}
+    }  
 
 
   // let saveButton = [];
