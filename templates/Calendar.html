@@ -517,8 +517,8 @@ button {
       document.querySelector(".icon").src = "https://openweathermap.org/img/wn/" + icon + "@2x.png"
       document.querySelector(".weather").innerText = "Weather description:" + " " + description;
       document.querySelector(".currenttemp").innerText = temp + "℉"
-      document.querySelector(".H").innerText = temp_max + "℉"
-      document.querySelector(".L").innerText = temp_min + "℉"
+      document.querySelector(".H").innerText = "High: " + temp_max + "℉"
+      document.querySelector(".L").innerText = "Low: " + temp_min + "℉"
     },
     search: function () {
       this.fetchWeather(document.querySelector(".searchbar").value);
