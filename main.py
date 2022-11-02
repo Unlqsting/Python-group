@@ -5,7 +5,7 @@ from __init__ import app  # Definitions initialization
 from api import app_api # Blueprint import api definition
 from bp_projects.projects import app_projects # Blueprint directory import projects definition
 
-import weatherapi
+# import weatherapi
 
 app.register_blueprint(app_api) # register api routes
 app.register_blueprint(app_projects) # register api routes
