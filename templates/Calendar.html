@@ -69,14 +69,16 @@
     <div id="weatherContainer">
       <div class="search">
           <input type="text" class="searchbar" placeholder="Enter city name..." />
-          <button onclick=""><i class="fa-solid fa-magnifying-glass"></i></button>
+          <button onclick="weather.search()"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
       <div id="weatherHeader">
         <div id="tempHeader">
           <h1 class="city">San Diego</h1>
+          <img src="" class="icon" />
 
-          <h2 class="currenttemp">72<span>&#176;f</span></h2>
           <div class="weather">Sunny</div>
+          <h2 class="currenttemp">72<span>&#176;f</span></h2>
+          
           <div class="H">H: 75<span>&#176;f</span></div>
           <div class="L">L: 65<span>&#176;f</span></div>
 
@@ -84,11 +86,15 @@
 
       </div>
 
-      <div id="weekWeather"></div>
-
     </div>
 
     <!-- weather thing -->
+
+    <div class="eventcontainer">
+      <div class="events">
+        
+      </div>
+    </div>
 
   </body>
 
@@ -99,6 +105,9 @@
   font-weight: 500;
   font-style: italic;
   padding: 5px;
+}
+.icon {
+  display: flex;
 }
 .weather {
   font-size: 25px;
@@ -149,18 +158,18 @@ i {
 #weatherHeader {
   width: 100%;
   width: 450px;
-  height: 400px;
+  height: 450px;
   background-color: #002d44;
   display: flex;
   align-items: center;
 }
-.city, .currenttemp, .weather, .H, .L {
+.city, .currenttemp, .weather, .H, .L, .icon {
   text-shadow:#38878a, 5px;
   opacity: 100%;
   display: flex;
   align-items: center;
   color: antiquewhite;
-  transform: translateX(75%);
+  /* transform: translateX(25%); */
   justify-content: center;
   text-align: center;
 }
@@ -492,8 +501,33 @@ button {
   //weather stuff:
 
   let weather = {
-    // put your api stuff here
+    apiKey: "b95c3461498620c129a3d6a6b675c29b",
+    fetchWeather: function (city) {
+      fetch(
+        "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=b95c3461498620c129a3d6a6b675c29b"
+      )
+        .then((res) => res.json())
+        .then((data) => this.displayWeather(data));
+    },
+    displayWeather: function(data) {
+      const { name } = data;
+      const { icon, description } = data.weather[0];
+      const { temp } = data.main;
+      const { temp_max, temp_min } = data.main
+      console.log(name,icon,description,temp,temp_max,temp_min)
+      document.querySelector(".city").innerText = "Weather in " + name;
+      document.querySelector(".icon").src = "https://openweathermap.org/img/wn/" + icon + "@2x.png"
+      document.querySelector(".weather").innerText = "Weather description:" + " " + description;
+      document.querySelector(".currenttemp").innerText = temp + "℉"
+      document.querySelector(".H").innerText = temp_max + "℉"
+      document.querySelector(".L").innerText = temp_min + "℉"
+    },
+    search: function () {
+      this.fetchWeather(document.querySelector(".searchbar").value);
+    },
   };
+
+  
 
   // const searchbutton = document.querySelector('');
    // searchbutton.addEventListener('click', )
