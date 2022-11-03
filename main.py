@@ -27,6 +27,10 @@ def stub():
 def Calendar():
     return render_template("Calendar.html")
 
+@app.route('/Wapi/')  # connects /stub/ URL to stub() function
+def Wapi():
+    return render_template("goodweatherapi.js")
+
 # @app.route('/weatherapi/')  # connects /stub/ URL to stub() function
 # def weather():
 #     return weatherapi()
