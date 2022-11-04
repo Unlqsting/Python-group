@@ -1,0 +1,16 @@
+<html>
+    <body>
+        <pre id="wapiOutput">
+            
+        </pre>
+    </body>    
+</html>
+
+<script>
+    fetch(
+        "https://api.openweathermap.org/data/2.5/weather?q=" + "san diego" + "&units=imperial&appid=b95c3461498620c129a3d6a6b675c29b"
+    )
+        .then((response) => response.json())
+        .then((data) => document.getElementById("wapiOutput").innerHTML=JSON.stringify(data));
+    console.log("backend retrieval");
+</script>
