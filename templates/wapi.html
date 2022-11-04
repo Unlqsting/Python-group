@@ -1,3 +1,7 @@
+{% extends "layouts/base.html" %}
+{% set project = "weatherapi" %}
+
+{% block body %}
 <html>
     <body>
         <pre id="wapiOutput">
@@ -14,3 +18,4 @@
         .then((data) => document.getElementById("wapiOutput").innerHTML=JSON.stringify(data));
     console.log("backend retrieval");
 </script>
+{% endblock %}
